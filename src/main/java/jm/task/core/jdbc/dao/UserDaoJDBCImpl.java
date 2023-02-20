@@ -24,17 +24,16 @@ public class UserDaoJDBCImpl implements UserDao {
                 "CREATE TABLE " + tableName
                 + "("
                 + "id BIGINT,"
-                + "name VARCHAR(50), "
-                + "lastName VARCHAR(50), "
+                + "name VARCHAR(100), "
+                + "lastName VARCHAR(100), "
                 + "age TINYINT"
                 + ")";
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            //если таблица существует, метод прерывается, попытка создания таблицы не происходит
             System.out.println("Trying to create \"" + tableName + "\" table.");
             if (tableExists(connection, tableName)) {
                 System.out.println("\"" + tableName + "\" table already exists.");
-                return;
+                return; //если таблица существует, метод прерывается, попытка создания таблицы не происходит
             }
 
             statement.executeUpdate(createTableSQL);
@@ -46,7 +45,19 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
+        String dropTableSQL = "DROP TABLE " + tableName;
 
+        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+            if (!tableExists(connection, tableName)) {
+                System.out.println("\"" + tableName + "\" table does not exists.");
+                return;
+            }
+
+            statement.executeUpdate(dropTableSQL);
+            System.out.println("Dropped \"" + tableName + "\" table from database.");
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 
     @Override
@@ -79,7 +90,6 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
-
             return resultSet.next();
         } catch (SQLException s) {
             s.printStackTrace();

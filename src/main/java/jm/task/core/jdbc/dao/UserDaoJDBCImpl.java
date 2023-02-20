@@ -30,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 + ")";
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            if (userTableExists(connection, tableName)) {
+            if (tableExists(connection, tableName)) { //если таблица существует, метод прерывается
                 System.out.println("\"" + tableName + "\" table already exists.");
                 return;
             }
@@ -67,7 +67,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
-    private boolean userTableExists(Connection connection, String tableName) {
+    /**
+     * Метод для проверки существования таблицы в Базе Данных.
+     * @param connection текущее соединение
+     * @param tableName название таблицы
+     * @return true, если таблица существует, или false, если таблица не существует
+     */
+    private boolean tableExists(Connection connection, String tableName) {
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});

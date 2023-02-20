@@ -9,34 +9,34 @@ import java.sql.SQLException;
 public class Util {
     // реализуйте настройку соеденения с БД
 
-    public static void setConnection() {
+    static Connection connection;
+
+    public static Connection getConnection() {
         String dbURL = "jdbc:mysql://127.0.0.1:3306/users?useSSL=false";
         String userName = "root";
         String password = "Ch3ck4dGR4Y!";
 
-        try (Connection conn = DriverManager.getConnection(dbURL, userName, password)) {
-            if (conn == null) {
+        try {
+            connection = DriverManager.getConnection(dbURL, userName, password);
+            if (connection == null) {
                 System.out.println("There is no connection with Database");
                 System.exit(0);
             }
             System.out.println("Connected");
-//            Statement stmt = conn.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-//
-//            while (rs.next()) {
-//                System.out.println(rs.getRow() + ". " + rs.getString("firstname")
-//                        + "\t" + rs.getString("lastname"));
-//            }
-//
-//            /**
-//             * stmt.close();
-//             * При закрытии Statement автоматически закрываются
-//             * все связанные с ним открытые объекты ResultSet
-//             */
-//            stmt.close();
+            return connection;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException s) {
+            s.printStackTrace();
         }
     }
 }

@@ -48,8 +48,9 @@ public class UserDaoJDBCImpl implements UserDao {
         String dropTableSQL = "DROP TABLE " + tableName;
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+            System.out.println("Trying to drop \"" + tableName + "\" table.");
             if (!tableExists(connection, tableName)) {
-                System.out.println("\"" + tableName + "\" table does not exists.");
+                System.out.println("\"" + tableName + "\" table doesn't exists.");
                 return;
             }
 

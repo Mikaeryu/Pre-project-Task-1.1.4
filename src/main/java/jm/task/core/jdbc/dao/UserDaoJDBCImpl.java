@@ -30,7 +30,9 @@ public class UserDaoJDBCImpl implements UserDao {
                 + ")";
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            if (tableExists(connection, tableName)) { //если таблица существует, метод прерывается
+            //если таблица существует, метод прерывается, попытка создания таблицы не происходит
+            System.out.println("Trying to create \"" + tableName + "\" table.");
+            if (tableExists(connection, tableName)) {
                 System.out.println("\"" + tableName + "\" table already exists.");
                 return;
             }

@@ -22,7 +22,8 @@ public class Util {
                 System.out.println("There is no connection with Database");
                 System.exit(0);
             }
-            System.out.println("Connected");
+
+            System.out.println("Connected.");
             return connection;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -30,13 +31,5 @@ public class Util {
         }
 
         return null;
-    }
-
-    public static void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException s) {
-            s.printStackTrace();
-        }
     }
 }

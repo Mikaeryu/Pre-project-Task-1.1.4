@@ -71,11 +71,14 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement statement = Objects.requireNonNull(connection).createStatement();
              ResultSet resultSet = statement.executeQuery(query)
         ) {
+            int listIndex = 0;
             while (resultSet.next()) {
+
                 userList.add(new User(
                         resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age")
                 ));
-                //userList.get() //ЗДЕСЬ НУЖНО ПРИСВАИВАТЬ АЙДИ
+                userList.get(listIndex).setId(resultSet.getLong("id"));
+                listIndex++;
             }
         } catch (SQLException se) {
             se.printStackTrace();
@@ -103,21 +106,4 @@ public class UserDaoJDBCImpl implements UserDao {
             se.printStackTrace();
         }
     }
-
-//    /**
-//     * Метод для проверки существования таблицы в Базе Данных.
-//     * @param connection текущее соединение
-//     * @return true, если таблица существует, или false, если таблица не существует
-//     */
-//    private boolean tableExists(Connection connection) {
-//        try {
-//            DatabaseMetaData meta = connection.getMetaData();
-//            ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
-//            return resultSet.next();
-//        } catch (SQLException s) {
-//            s.printStackTrace();
-//        }
-//
-//        return false;
-//    }
 }

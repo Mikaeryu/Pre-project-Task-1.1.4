@@ -11,6 +11,7 @@ public class Main {
 
         userDaoJDBC.dropUsersTable();
         userDaoJDBC.createUsersTable();
+
         userDaoJDBC.saveUser("Joshua", "Graham", (byte) 33);
         userDaoJDBC.saveUser("Andrei", "Tarkovsky", (byte) 45);
         userDaoJDBC.saveUser("Hideo", "Kojima", (byte) 59);
@@ -18,9 +19,8 @@ public class Main {
 
         List<User> userList = userDaoJDBC.getAllUsers();
         System.out.println(userList);
+
         userDaoJDBC.cleanUsersTable();
         userDaoJDBC.dropUsersTable();
-
-
     }
 }

@@ -19,7 +19,6 @@ public class Util {
 
             if (connection == null) {
                 System.out.println("There is no connection with Database");
-                System.exit(0);
             }
 
             return connection;

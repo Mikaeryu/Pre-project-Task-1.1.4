@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDaoJDBCImpl implements UserDao {
 
@@ -76,7 +77,8 @@ public class UserDaoJDBCImpl implements UserDao {
      * @param sqlStatement SQL команда.
      */
     private void executeUpdateForSQL(String sqlStatement) {
-        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+        try (Connection connection = Util.getConnection();
+             Statement statement = Objects.requireNonNull(connection).createStatement()) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {
             se.printStackTrace();

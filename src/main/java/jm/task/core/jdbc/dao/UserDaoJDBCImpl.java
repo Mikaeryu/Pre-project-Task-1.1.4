@@ -52,6 +52,7 @@ public class UserDaoJDBCImpl implements UserDao {
         );
 
         executeUpdateForSQL(saveSQL);
+        System.out.println("User с именем " + name + " добавлен в базу данных.");
     }
 
     @Override
@@ -70,9 +71,8 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement statement = Objects.requireNonNull(connection).createStatement();
              ResultSet resultSet = statement.executeQuery(query)
         ) {
-            int listIndex = 0;
+            int listIndex = 0; //вот тут не уверен насчёт счетчика, типа, при добавлении в лист, нужно ещё айдишник ставить юзеру как-то
             while (resultSet.next()) {
-
                 userList.add(new User(
                         resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age")
                 ));

@@ -18,6 +18,8 @@ public class Main {
 
         List<User> userList = userDaoJDBC.getAllUsers();
         System.out.println(userList);
+        userDaoJDBC.cleanUsersTable();
+        userDaoJDBC.dropUsersTable();
 
 
     }

@@ -15,5 +15,8 @@ public class Main {
         userDaoJDBC.saveUser("Cass", "Jog", (byte) 18);
         userDaoJDBC.saveUser("Fog", "Log", (byte) 11);
         userDaoJDBC.saveUser("Val", "Kick", (byte) 28);
+
+        userDaoJDBC.removeUserById(2L);
+        userDaoJDBC.cleanUsersTable();
     }
 }

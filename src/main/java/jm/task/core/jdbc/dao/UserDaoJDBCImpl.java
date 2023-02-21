@@ -30,11 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 + "PRIMARY KEY (id)"
                 + ")";
 
-        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            statement.executeUpdate(createTableSQL);
-        } catch (SQLException s) {
-            s.printStackTrace();
-        }
+        executeUpdateForSQL(createTableSQL);
     }
 
     @Override
@@ -64,27 +60,14 @@ public class UserDaoJDBCImpl implements UserDao {
                 "INSERT INTO " + tableName + " (name, lastName, age) values ('%s', '%s', %s) ", name, lastName, age
         );
 
-        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            statement.executeUpdate(saveSQL);
-        }   catch (SQLException s) {
-            s.printStackTrace();
-        }
+        executeUpdateForSQL(saveSQL);
     }
 
     @Override
     public void removeUserById(long id) {
         String deleteUserByIdSQL = "DELETE FROM " + tableName + " WHERE id=" + id;
 
-        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            if (!tableExists(connection)) {
-                System.out.println("\"" + tableName + "\" table doesn't exists.");
-                return; //если таблица не существует, метод прерывается, попытка создания таблицы не происходит
-            }
-
-            statement.executeUpdate(deleteUserByIdSQL);
-        } catch (SQLException s) {
-            s.printStackTrace();
-        }
+        executeUpdateForSQL(deleteUserByIdSQL);
     }
 
     @Override
@@ -94,7 +77,21 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
+        String cleanTableSQL = "TRUNCATE TABLE " + tableName;
 
+        executeUpdateForSQL(cleanTableSQL);
+    }
+
+    /**
+     * Метод, устанавливающий соединение с БД и выполняющий SQL комманду.
+     * @param sqlStatement SQL команда.
+     */
+    private void executeUpdateForSQL(String sqlStatement) {
+        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sqlStatement);
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 
     /**

@@ -35,18 +35,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String dropTableSQL = "DROP TABLE " + tableName;
+        String dropTableSQL = "DROP TABLE IF EXISTS " + tableName;
 
-        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            if (!tableExists(connection)) {
-                System.out.println("\"" + tableName + "\" table doesn't exists.");
-                return; //если таблица не существует, метод прерывается, попытка создания таблицы не происходит
-            }
-
-            statement.executeUpdate(dropTableSQL);
-        } catch (SQLException se) {
-            se.printStackTrace();
-        }
+        executeUpdateForSQL(dropTableSQL);
     }
 
     @Override
@@ -94,20 +85,20 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    /**
-     * Метод для проверки существования таблицы в Базе Данных.
-     * @param connection текущее соединение
-     * @return true, если таблица существует, или false, если таблица не существует
-     */
-    private boolean tableExists(Connection connection) {
-        try {
-            DatabaseMetaData meta = connection.getMetaData();
-            ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
-            return resultSet.next();
-        } catch (SQLException s) {
-            s.printStackTrace();
-        }
-
-        return false;
-    }
+//    /**
+//     * Метод для проверки существования таблицы в Базе Данных.
+//     * @param connection текущее соединение
+//     * @return true, если таблица существует, или false, если таблица не существует
+//     */
+//    private boolean tableExists(Connection connection) {
+//        try {
+//            DatabaseMetaData meta = connection.getMetaData();
+//            ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
+//            return resultSet.next();
+//        } catch (SQLException s) {
+//            s.printStackTrace();
+//        }
+//
+//        return false;
+//    }
 }

@@ -8,15 +8,10 @@ public class Main {
         // реализуйте алгоритм здесь
         UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
         userDaoJDBC.dropUsersTable();
+        userDaoJDBC.dropUsersTable();
         userDaoJDBC.createUsersTable();
+        userDaoJDBC.dropUsersTable();
+        userDaoJDBC.dropUsersTable();
 
-
-        userDaoJDBC.saveUser("John", "Wick", (byte) 34);
-        userDaoJDBC.saveUser("Cass", "Jog", (byte) 18);
-        userDaoJDBC.saveUser("Fog", "Log", (byte) 11);
-        userDaoJDBC.saveUser("Val", "Kick", (byte) 28);
-
-        userDaoJDBC.removeUserById(2L);
-        userDaoJDBC.cleanUsersTable();
     }
 }

@@ -22,7 +22,6 @@ public class Util {
                 System.exit(0);
             }
 
-            System.out.println("\nConnected.");
             return connection;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

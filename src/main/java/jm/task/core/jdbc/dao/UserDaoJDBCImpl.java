@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    static String tableName = "users";
+    private static final String tableName = "users";
 
     public UserDaoJDBCImpl() {
 
@@ -21,23 +21,17 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
         String createTableSQL =
-                "CREATE TABLE " + tableName
+                "CREATE TABLE IF NOT EXISTS " + tableName
                 + "("
-                + "id BIGINT,"
-                + "name VARCHAR(100), "
-                + "lastName VARCHAR(100), "
-                + "age TINYINT"
+                + "id BIGINT NOT NULL AUTO_INCREMENT,"
+                + "name VARCHAR(100) NOT NULL,"
+                + "lastName VARCHAR(100) NOT NULL, "
+                + "age TINYINT NOT NULL,"
+                + "PRIMARY KEY (id)"
                 + ")";
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            System.out.println("Trying to create \"" + tableName + "\" table.");
-            if (tableExists(connection, tableName)) {
-                System.out.println("\"" + tableName + "\" table already exists.");
-                return; //если таблица существует, метод прерывается, попытка создания таблицы не происходит
-            }
-
             statement.executeUpdate(createTableSQL);
-            System.out.println("Created \"" + tableName + "\" table in given database.");
         } catch (SQLException s) {
             s.printStackTrace();
         }
@@ -48,14 +42,12 @@ public class UserDaoJDBCImpl implements UserDao {
         String dropTableSQL = "DROP TABLE " + tableName;
 
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
-            System.out.println("Trying to drop \"" + tableName + "\" table.");
-            if (!tableExists(connection, tableName)) {
+            if (!tableExists(connection)) {
                 System.out.println("\"" + tableName + "\" table doesn't exists.");
-                return;
+                return; //если таблица не существует, метод прерывается, попытка создания таблицы не происходит
             }
 
             statement.executeUpdate(dropTableSQL);
-            System.out.println("Dropped \"" + tableName + "\" table from database.");
         } catch (SQLException s) {
             s.printStackTrace();
         }
@@ -63,7 +55,20 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
+        if (age < 0) {
+            System.out.println("User's age cannot be negative number!");
+            return;
+        }
 
+        String saveSQL = String.format(
+                "INSERT INTO " + tableName + " (name, lastName, age) values ('%s', '%s', %s) ", name, lastName, age
+        );
+
+        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(saveSQL);
+        }   catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 
     @Override
@@ -84,10 +89,9 @@ public class UserDaoJDBCImpl implements UserDao {
     /**
      * Метод для проверки существования таблицы в Базе Данных.
      * @param connection текущее соединение
-     * @param tableName название таблицы
      * @return true, если таблица существует, или false, если таблица не существует
      */
-    private boolean tableExists(Connection connection, String tableName) {
+    private boolean tableExists(Connection connection) {
         try {
             DatabaseMetaData meta = connection.getMetaData();
             ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});

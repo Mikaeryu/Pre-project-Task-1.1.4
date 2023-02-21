@@ -8,7 +8,6 @@ public class Main {
         // реализуйте алгоритм здесь
         UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
         userDaoJDBC.dropUsersTable();
-        userDaoJDBC.createUsersTable();
 
 
         userDaoJDBC.saveUser("John", "Wick", (byte) 3);

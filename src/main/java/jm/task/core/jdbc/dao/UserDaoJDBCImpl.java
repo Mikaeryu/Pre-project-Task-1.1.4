@@ -73,7 +73,18 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
+        String deleteUserByIdSQL = "DELETE FROM " + tableName + " WHERE id=" + id;
 
+        try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
+            if (!tableExists(connection)) {
+                System.out.println("\"" + tableName + "\" table doesn't exists.");
+                return; //если таблица не существует, метод прерывается, попытка создания таблицы не происходит
+            }
+
+            statement.executeUpdate(deleteUserByIdSQL);
+        } catch (SQLException s) {
+            s.printStackTrace();
+        }
     }
 
     @Override

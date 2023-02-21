@@ -44,8 +44,8 @@ public class UserDaoJDBCImpl implements UserDao {
             }
 
             statement.executeUpdate(dropTableSQL);
-        } catch (SQLException s) {
-            s.printStackTrace();
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
     }
 
@@ -89,8 +89,8 @@ public class UserDaoJDBCImpl implements UserDao {
     private void executeUpdateForSQL(String sqlStatement) {
         try (Connection connection = Util.getConnection(); Statement statement = connection.createStatement()) {
             statement.executeUpdate(sqlStatement);
-        } catch (SQLException s) {
-            s.printStackTrace();
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
     }
 

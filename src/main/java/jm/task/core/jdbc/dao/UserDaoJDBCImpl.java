@@ -48,7 +48,8 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
         String saveSQL = String.format(
-                "INSERT INTO " + tableName + " (name, lastName, age) values ('%s', '%s', %s) ", name, lastName, age
+                "INSERT INTO " + tableName + " (name, lastName, age) values ('%s', '%s', %s) ",
+                name, lastName, age
         );
 
         executeUpdateForSQL(saveSQL);
@@ -71,13 +72,12 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement statement = Objects.requireNonNull(connection).createStatement();
              ResultSet resultSet = statement.executeQuery(query)
         ) {
-            int listIndex = 0; //вот тут не уверен насчёт счетчика, типа, при добавлении в лист, нужно ещё айдишник ставить юзеру как-то
             while (resultSet.next()) {
-                userList.add(new User(
+                User user = new User(
                         resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age")
-                ));
-                userList.get(listIndex).setId(resultSet.getLong("id"));
-                listIndex++;
+                );
+                user.setId(resultSet.getLong("id"));
+                userList.add(user);
             }
         } catch (SQLException se) {
             se.printStackTrace();

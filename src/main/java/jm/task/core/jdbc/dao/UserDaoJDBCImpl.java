@@ -2,10 +2,12 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -62,7 +64,23 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        final String query = "SELECT id, name, lastName, age FROM " + tableName;
+        List<User> userList = new ArrayList<>();
+
+        try (Connection connection = Util.getConnection();
+             Statement statement = Objects.requireNonNull(connection).createStatement();
+             ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                userList.add(new User(
+                        resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age")
+                ));
+                //userList.get() //ЗДЕСЬ НУЖНО ПРИСВАИВАТЬ АЙДИ
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+        return userList;
     }
 
     @Override
@@ -78,7 +96,8 @@ public class UserDaoJDBCImpl implements UserDao {
      */
     private void executeUpdateForSQL(String sqlStatement) {
         try (Connection connection = Util.getConnection();
-             Statement statement = Objects.requireNonNull(connection).createStatement()) {
+             Statement statement = Objects.requireNonNull(connection).createStatement()
+        ) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {
             se.printStackTrace();

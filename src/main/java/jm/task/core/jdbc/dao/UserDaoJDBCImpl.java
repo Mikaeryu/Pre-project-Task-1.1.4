@@ -11,12 +11,12 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    private static final String tableName = "users";
+    private static final String TABLE_NAME = "users";
 
     @Override
     public void createUsersTable() {
         String createTableSQL =
-                "CREATE TABLE IF NOT EXISTS " + tableName
+                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
                 + "("
                 + "id BIGINT NOT NULL AUTO_INCREMENT,"
                 + "name VARCHAR(100) NOT NULL,"
@@ -30,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String dropTableSQL = "DROP TABLE IF EXISTS " + tableName;
+        String dropTableSQL = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
         executeUpdateForSQL(dropTableSQL);
     }
@@ -43,7 +43,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
 
         String saveSQL = String.format(
-                "INSERT INTO " + tableName + " (name, lastName, age) values ('%s', '%s', %s) ",
+                "INSERT INTO " + TABLE_NAME + " (name, lastName, age) values ('%s', '%s', %s) ",
                 name, lastName, age
         );
 
@@ -53,25 +53,30 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        String deleteUserByIdSQL = "DELETE FROM " + tableName + " WHERE id=" + id;
+        String deleteUserByIdSQL = "DELETE FROM " + TABLE_NAME + " WHERE id=" + id;
 
         executeUpdateForSQL(deleteUserByIdSQL);
     }
 
     @Override
     public List<User> getAllUsers() {
-        final String query = "SELECT id, name, lastName, age FROM " + tableName;
+        final String query = "SELECT id, name, lastName, age FROM " + TABLE_NAME;
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)
         ) {
+
             while (resultSet.next()) {
-                User user = new User(
-                        resultSet.getString("name"), resultSet.getString("lastName"), resultSet.getByte("age")
-                );
-                user.setId(resultSet.getLong("id"));
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastName");
+                byte age = resultSet.getByte("age");
+                long id = resultSet.getLong("id");
+
+                User user = new User(name, lastName, age);
+                user.setId(id);
+
                 userList.add(user);
             }
         } catch (SQLException se) {
@@ -82,7 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String cleanTableSQL = "TRUNCATE TABLE " + tableName;
+        String cleanTableSQL = "TRUNCATE TABLE " + TABLE_NAME;
 
         executeUpdateForSQL(cleanTableSQL);
     }

@@ -11,7 +11,7 @@ public class Util {
     public static Connection getConnection() {
         Connection connection = null;
 
-        String dbURL = "jdbc:mysql://127.0.0.1:3306/users?useSSL=false";
+        String dbURL = "jdbc:mysql://localhost:3306/users?useSSL=false";
         String userName = "root";
         String password = "Ch3ck4dGR4Y!";
 

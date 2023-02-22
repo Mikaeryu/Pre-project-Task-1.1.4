@@ -101,6 +101,9 @@ public class UserDaoJDBCImpl implements UserDao {
         ) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {
+            System.out.println("Error Code = " + se.getErrorCode());
+            System.out.println("SQL state = " + se.getSQLState());
+            System.out.println("Message = " + se.getMessage());
             se.printStackTrace();
         }
     }

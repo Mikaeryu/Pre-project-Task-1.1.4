@@ -111,7 +111,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
     static private class ExecuteSQLException extends RuntimeException {
         public ExecuteSQLException() {
-
         }
 
         public ExecuteSQLException(String message) {

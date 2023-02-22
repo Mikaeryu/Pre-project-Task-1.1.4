@@ -109,6 +109,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+
     static private class SQLExceptionUnchecked extends RuntimeException {
         public SQLExceptionUnchecked() {
 

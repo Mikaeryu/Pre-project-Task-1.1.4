@@ -69,7 +69,7 @@ public class UserDaoJDBCImpl implements UserDao {
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = Util.getConnection();
-             Statement statement = Objects.requireNonNull(connection).createStatement(); //shoud get rid off requireNonNull here and change Util.Connection
+             Statement statement = Objects.requireNonNull(connection).createStatement(); //should get rid of requireNonNull here and change Util.Connection
              ResultSet resultSet = statement.executeQuery(query)
         ) {
             while (resultSet.next()) {
@@ -98,7 +98,7 @@ public class UserDaoJDBCImpl implements UserDao {
      */
     private void executeUpdateForSQL(String sqlStatement) {
         try (Connection connection = Util.getConnection();
-             Statement statement = Objects.requireNonNull(connection).createStatement() //shoud get rid off requireNonNull here and change Util.Connection
+             Statement statement = Objects.requireNonNull(connection).createStatement() //should get rid of requireNonNull here and change Util.Connection
         ) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {

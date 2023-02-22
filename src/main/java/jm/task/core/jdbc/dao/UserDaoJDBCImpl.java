@@ -67,7 +67,6 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)
         ) {
-
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("lastName");

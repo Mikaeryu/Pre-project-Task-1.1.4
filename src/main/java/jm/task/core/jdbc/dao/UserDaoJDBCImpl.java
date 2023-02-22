@@ -102,7 +102,7 @@ public class UserDaoJDBCImpl implements UserDao {
         ) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {
-            String message = String.format("Error Code = %s; SQL state = %s; Message = %s; ",
+            String message = String.format("Error Code = %s; SQL state = %s; Message = %s;",
                     se.getErrorCode(), se.getSQLState(), se.getMessage());
 
             throw new SQLExceptionUnchecked(message);

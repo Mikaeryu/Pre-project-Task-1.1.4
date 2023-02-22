@@ -79,7 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
         } catch (SQLException se) {
-            throw new SQLExceptionUnchecked();
+            throw new ExecuteSQLException();
         }
         return userList;
     }
@@ -104,17 +104,17 @@ public class UserDaoJDBCImpl implements UserDao {
             String message = String.format("Error Code = %s; SQL state = %s; Message = %s;",
                     se.getErrorCode(), se.getSQLState(), se.getMessage());
 
-            throw new SQLExceptionUnchecked(message);
+            throw new ExecuteSQLException(message);
         }
     }
 
 
-    static private class SQLExceptionUnchecked extends RuntimeException {
-        public SQLExceptionUnchecked() {
+    static private class ExecuteSQLException extends RuntimeException {
+        public ExecuteSQLException() {
 
         }
 
-        public SQLExceptionUnchecked(String message) {
+        public ExecuteSQLException(String message) {
             super(message);
         }
     }

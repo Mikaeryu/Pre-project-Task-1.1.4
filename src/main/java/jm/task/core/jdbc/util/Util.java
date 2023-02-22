@@ -3,7 +3,6 @@ package jm.task.core.jdbc.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Objects;
 
 public class Util {
     // реализуйте настройку соеденения с БД
@@ -17,6 +16,6 @@ public class Util {
 
         connection = DriverManager.getConnection(dbURL, userName, password);
 
-        return Objects.requireNonNull(connection, "There is no connection with Database");
+        return connection;
     }
 }

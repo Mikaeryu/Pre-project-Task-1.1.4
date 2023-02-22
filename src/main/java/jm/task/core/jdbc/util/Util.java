@@ -8,14 +8,10 @@ public class Util {
     // реализуйте настройку соеденения с БД
 
     public static Connection getConnection() throws SQLException{
-        Connection connection;
-
         String dbURL = "jdbc:mysql://localhost:3306/users?useSSL=false";
         String userName = "root";
         String password = "Ch3ck4dGR4Y!";
 
-        connection = DriverManager.getConnection(dbURL, userName, password);
-
-        return connection;
+        return DriverManager.getConnection(dbURL, userName, password);
     }
 }

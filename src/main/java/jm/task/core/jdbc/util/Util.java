@@ -9,7 +9,7 @@ public class Util {
     // реализуйте настройку соеденения с БД
 
     public static Connection getConnection() throws SQLException{
-        Connection connection = null;
+        Connection connection;
 
         String dbURL = "jdbc:mysql://localhost:3306/users?useSSL=false";
         String userName = "root";

@@ -80,7 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
         } catch (SQLException se) {
-            se.printStackTrace();
+            throw new SQLExceptionUnchecked();
         }
         return userList;
     }
@@ -102,12 +102,20 @@ public class UserDaoJDBCImpl implements UserDao {
         ) {
             statement.executeUpdate(sqlStatement);
         } catch (SQLException se) {
-            System.out.println("Error Code = " + se.getErrorCode());
-            System.out.println("SQL state = " + se.getSQLState());
-            System.out.println("Message = " + se.getMessage());
-            //se.printStackTrace();
-            throw new RuntimeException(se.getMessage());
-            //вот тут не особо уверен, нормально ли так обрабатывать исключение?надо же что-то прокинуть, но не checked исключение же
+            String message = String.format("Error Code = %s; SQL state = %s; Message = %s; ",
+                    se.getErrorCode(), se.getSQLState(), se.getMessage());
+
+            throw new SQLExceptionUnchecked(message);
+        }
+    }
+
+    static private class SQLExceptionUnchecked extends RuntimeException {
+        public SQLExceptionUnchecked() {
+
+        }
+
+        public SQLExceptionUnchecked(String message) {
+            super(message);
         }
     }
 }

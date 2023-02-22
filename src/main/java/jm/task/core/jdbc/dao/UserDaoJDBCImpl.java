@@ -105,6 +105,8 @@ public class UserDaoJDBCImpl implements UserDao {
             System.out.println("SQL state = " + se.getSQLState());
             System.out.println("Message = " + se.getMessage());
             se.printStackTrace();
+            throw new RuntimeException(se.getMessage());
+            //вот тут не особо уверен, нормально ли так обрабатывать исключение?надо же что-то прокинуть, но не checked исключение же
         }
     }
 }

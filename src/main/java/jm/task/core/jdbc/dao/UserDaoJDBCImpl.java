@@ -1,5 +1,6 @@
 package jm.task.core.jdbc.dao;
 
+import jm.task.core.jdbc.Exceptions.ExecuteSQLException;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import java.sql.Connection;
@@ -108,14 +109,4 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-
-    static private class ExecuteSQLException extends RuntimeException {
-        public ExecuteSQLException() {
-
-        }
-
-        public ExecuteSQLException(String message) {
-            super(message);
-        }
-    }
 }

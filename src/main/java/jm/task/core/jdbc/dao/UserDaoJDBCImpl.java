@@ -1,6 +1,6 @@
 package jm.task.core.jdbc.dao;
 
-import jm.task.core.jdbc.Exceptions.ExecuteSQLException;
+import jm.task.core.jdbc.exceptions.ExecuteSQLException;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import java.sql.Connection;

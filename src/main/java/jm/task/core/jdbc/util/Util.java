@@ -19,14 +19,14 @@ public class Util {
 
             if (connection == null) {
                 System.out.println("There is no connection with Database");
-            }
+            } //Shoud change this if???
 
-            return connection;
+            return connection; // maybe delete this return line in try block and use one return at the bottom?
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
-        return null;
+        return null; // change return here to requireNonNull return and delete requireNonNull options in Impl class
     }
 }

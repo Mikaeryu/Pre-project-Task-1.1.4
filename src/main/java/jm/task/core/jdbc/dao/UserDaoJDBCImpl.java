@@ -108,5 +108,4 @@ public class UserDaoJDBCImpl implements UserDao {
             throw new ExecuteSQLException(message);
         }
     }
-
 }

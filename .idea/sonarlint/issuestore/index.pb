@@ -1,6 +1,4 @@
 
-<
-TaskJDBC.iml,6\8\6874deaebaee5ac83785b74ff8f5ac55a213ba3f
 s
 Csrc/main/java/jm/task/core/jdbc/exceptions/ExecuteSQLException.java,7\e\7ea2f7e6ade07cee85287baedb14ad17d0489c71
 R
@@ -13,3 +11,17 @@ h
 0src/main/java/jm/task/core/jdbc/dao/UserDao.java,9\8\98537719f21e123909a7e7550027eec65eb0241d
 m
 =src/main/java/jm/task/core/jdbc/dao/UserDaoHibernateImpl.java,f\6\f61bc8cc983455b547d554cfd3bddb383ad8d3bd
+w
+G.idea/sonarlint/issuestore/9/8/98537719f21e123909a7e7550027eec65eb0241d,9\5\95fbc92c82fe560e75217d06d0796e8b60b7e4b3
+w
+G.idea/sonarlint/issuestore/f/7/f73e03c860134ada6f8799d5a94864e0d276fdf3,b\3\b3c37c59cb237a66d7398d660a09ac3b185be4c9
+w
+G.idea/sonarlint/issuestore/7/e/7ea2f7e6ade07cee85287baedb14ad17d0489c71,f\d\fd985cfba1829ba0696adbab1ce7202167bb7186
+w
+G.idea/sonarlint/issuestore/c/e/ce475d05bd26c61cb3fe8be2f39dbc4a98cc5ed5,1\7\1734ee0be4f85ddffd9303ebe5aeda59b5780f64
+w
+G.idea/sonarlint/issuestore/6/2/62e2127fc6d01cf3cb67b7cbf130e294c5b10f40,9\a\9a09676ed79ed3c5e425c2bfb78f32263986874a
+l
+<src/main/java/jm/task/core/jdbc/service/UserServiceImpl.java,a\6\a68323c79bf41c7be7c97f3a26451fb9c79236ef
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

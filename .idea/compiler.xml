@@ -9,5 +9,8 @@
         <module name="TaskJDBC" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Pre-project-Task-1.1.4" target="15" />
+    </bytecodeTargetLevel>
   </component>
 </project>

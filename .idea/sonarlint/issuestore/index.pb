@@ -3,8 +3,6 @@
 TaskJDBC.iml,6\8\6874deaebaee5ac83785b74ff8f5ac55a213ba3f
 s
 Csrc/main/java/jm/task/core/jdbc/exceptions/ExecuteSQLException.java,7\e\7ea2f7e6ade07cee85287baedb14ad17d0489c71
-Y
-)src/main/java/jm/task/core/jdbc/Main.java,3\4\34d4aa166bffbba6637c9f7d46557303f439ce01
 R
 "src/test/java/UserServiceTest.java,c\e\ce475d05bd26c61cb3fe8be2f39dbc4a98cc5ed5
 7

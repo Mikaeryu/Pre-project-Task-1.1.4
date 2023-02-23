@@ -5,8 +5,6 @@ s
 Csrc/main/java/jm/task/core/jdbc/exceptions/ExecuteSQLException.java,7\e\7ea2f7e6ade07cee85287baedb14ad17d0489c71
 R
 "src/test/java/UserServiceTest.java,c\e\ce475d05bd26c61cb3fe8be2f39dbc4a98cc5ed5
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 _
 /src/main/java/jm/task/core/jdbc/model/User.java,6\2\62e2127fc6d01cf3cb67b7cbf130e294c5b10f40
 h

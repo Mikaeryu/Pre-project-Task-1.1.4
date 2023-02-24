@@ -8,8 +8,6 @@ _
 h
 8src/main/java/jm/task/core/jdbc/service/UserService.java,f\7\f73e03c860134ada6f8799d5a94864e0d276fdf3
 w
-G.idea/sonarlint/issuestore/9/8/98537719f21e123909a7e7550027eec65eb0241d,9\5\95fbc92c82fe560e75217d06d0796e8b60b7e4b3
-w
 G.idea/sonarlint/issuestore/f/7/f73e03c860134ada6f8799d5a94864e0d276fdf3,b\3\b3c37c59cb237a66d7398d660a09ac3b185be4c9
 w
 G.idea/sonarlint/issuestore/7/e/7ea2f7e6ade07cee85287baedb14ad17d0489c71,f\d\fd985cfba1829ba0696adbab1ce7202167bb7186
@@ -27,3 +25,5 @@ U
 0src/main/java/jm/task/core/jdbc/dao/UserDao.java,9\8\98537719f21e123909a7e7550027eec65eb0241d
 h
 8src/main/java/jm/task/core/jdbc/dao/UserDaoJDBCImpl.java,8\c\8ca9d994c9918b797bc9ba8824095a0f0fe7cee0
+m
+=src/main/java/jm/task/core/jdbc/dao/UserDaoHibernateImpl.java,f\6\f61bc8cc983455b547d554cfd3bddb383ad8d3bd

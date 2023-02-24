@@ -15,19 +15,19 @@ public class Util {
     // реализуйте настройку соеденения с БД
     private Util() {}
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
-    static final String USER_NAME = "root";
-    static final String PASSWORD = "Ch3ck4dGR4Y!";
-
     public static Connection getConnection() throws SQLException{
+        final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
+        final String USER_NAME = "root";
+        final String PASSWORD = "Ch3ck4dGR4Y!";
+
         return DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
     }
 
-    public Session getSession() throws HibernateException {
+    public static Session getSession() throws HibernateException {
         return getSessionFactory().openSession();
     }
 
-    private SessionFactory getSessionFactory() throws HibernateException {
+    private static SessionFactory getSessionFactory() throws HibernateException {
         SessionFactory sessionFactory;
         ServiceRegistry serviceRegistry;
 

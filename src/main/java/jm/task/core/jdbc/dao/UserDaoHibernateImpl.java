@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -11,16 +12,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        String createTableSQL =
-                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
-                        + "("
-                        + "id BIGINT NOT NULL AUTO_INCREMENT,"
-                        + "name VARCHAR(100) NOT NULL,"
-                        + "lastName VARCHAR(100) NOT NULL, "
-                        + "age TINYINT NOT NULL,"
-                        + "PRIMARY KEY (id)"
-                        + ")";
-
+        Util.getSession();
     }
 
     @Override

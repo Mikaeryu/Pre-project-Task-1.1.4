@@ -13,6 +13,7 @@ public class Main {
         userService.dropUsersTable();
         userService.createUsersTable();
 
+
         userService.saveUser("Joshua", "Graham", (byte) 33);
         userService.saveUser("Andrei", "Tarkovsky", (byte) 45);
         userService.saveUser("Hideo", "Kojima", (byte) 59);

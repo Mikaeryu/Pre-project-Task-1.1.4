@@ -23,5 +23,3 @@ w
 G.idea/sonarlint/issuestore/6/2/62e2127fc6d01cf3cb67b7cbf130e294c5b10f40,9\a\9a09676ed79ed3c5e425c2bfb78f32263986874a
 l
 <src/main/java/jm/task/core/jdbc/service/UserServiceImpl.java,a\6\a68323c79bf41c7be7c97f3a26451fb9c79236ef
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

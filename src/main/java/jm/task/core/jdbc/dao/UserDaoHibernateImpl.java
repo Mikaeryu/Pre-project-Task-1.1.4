@@ -7,7 +7,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    private static final String TABLE_NAME = "users";
+    private static final String TABLE_NAME = "users_db";
 
     @Override
     public void createUsersTable() {

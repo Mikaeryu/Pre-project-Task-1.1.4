@@ -24,5 +24,7 @@ public class Main {
 
         userService.cleanUsersTable();
         userService.dropUsersTable();
+
+        System.err.println("Hello");
     }
 }

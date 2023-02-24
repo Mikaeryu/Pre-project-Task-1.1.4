@@ -8,7 +8,7 @@ public class Util {
     // реализуйте настройку соеденения с БД
 
     public static Connection getConnection() throws SQLException{
-        String dbURL = "jdbc:mysql://localhost:3306/users?useSSL=false";
+        String dbURL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
         String userName = "root";
         String password = "Ch3ck4dGR4Y!";
 

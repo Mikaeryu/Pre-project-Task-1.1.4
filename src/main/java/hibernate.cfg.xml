@@ -4,31 +4,31 @@
 <hibernate-configuration>
     <session-factory>
 
-        <property name = "hibernate.dialect">
+        <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
 
-        <property name = "hibernate.connection.driver_class">
+        <property name="hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
 
         <!-- Connection properties -->
 
-        <property name = "hibernate.connection.url">
+        <property name="hibernate.connection.url">
             jdbc:mysql://localhost/usersdb
         </property>
 
-        <property name = "hibernate.connection.username">
+        <property name="hibernate.connection.username">
             root
         </property>
 
-        <property name = "hibernate.connection.password">
+        <property name="hibernate.connection.password">
             Ch3ck4dGR4Y!
         </property>
 
         <!-- List of XML mapping files -->
         <!-- Should change mapping to User here -->
-        <mapping resource = "Employee.hbm.xml"/>
+        <mapping resource="Employee.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

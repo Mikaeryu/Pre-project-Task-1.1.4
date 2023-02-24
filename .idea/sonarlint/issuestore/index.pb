@@ -19,3 +19,11 @@ w
 G.idea/sonarlint/issuestore/6/2/62e2127fc6d01cf3cb67b7cbf130e294c5b10f40,9\a\9a09676ed79ed3c5e425c2bfb78f32263986874a
 l
 <src/main/java/jm/task/core/jdbc/service/UserServiceImpl.java,a\6\a68323c79bf41c7be7c97f3a26451fb9c79236ef
+J
+Pre-project-Task-1.1.4.iml,4\6\465dd75e0c2ee246948c2e289e7229cc4fa779f9
+U
+%.idea/libraries/mysql_connector_j.xml,0\3\038c4a4effa9bade94c80937f44c14da066d984e
+`
+0src/main/java/jm/task/core/jdbc/dao/UserDao.java,9\8\98537719f21e123909a7e7550027eec65eb0241d
+h
+8src/main/java/jm/task/core/jdbc/dao/UserDaoJDBCImpl.java,8\c\8ca9d994c9918b797bc9ba8824095a0f0fe7cee0

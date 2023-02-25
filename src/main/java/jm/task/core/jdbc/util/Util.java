@@ -35,7 +35,7 @@ public class Util {
                 .applySettings(configuration.getProperties())
                 .build();
 
-        sessionFactory = configuration.с(serviceRegistry);
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
         return sessionFactory;
     }

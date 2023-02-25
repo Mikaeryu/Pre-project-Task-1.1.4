@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
+    //SessionFactory создаётся единственный раз
+    private static final SessionFactory SESSION_FACTORY = Util.getSessionFactory();
 
     @Override
     public void createUsersTable() {
@@ -45,8 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     private void executeUpdateForSQL(String sqlQuery) {
-        SessionFactory sessionFactory = Util.getSessionFactory();
-        Session session = sessionFactory.openSession();
+        Session session = SESSION_FACTORY.openSession();
         session.createSQLQuery(sqlQuery).executeUpdate();
         session.close();
     }

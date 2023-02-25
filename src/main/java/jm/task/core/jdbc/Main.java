@@ -11,24 +11,23 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
 
-//        UserServiceImpl userService = new UserServiceImpl();
-//
-//        userService.dropUsersTable();
-//        userService.createUsersTable();
-//
-//
-//        userService.saveUser("Joshua", "Graham", (byte) 33);
-//        userService.saveUser("Andrei", "Tarkovsky", (byte) 45);
-//        userService.saveUser("Hideo", "Kojima", (byte) 59);
-//        userService.saveUser("Vasya", "Pupkin", (byte) 0);
-//
+        UserServiceImpl userService = new UserServiceImpl();
+
+        userService.dropUsersTable();
+        userService.createUsersTable();
+
+        userService.saveUser("Joshua", "Graham", (byte) 33);
+        userService.saveUser("Andrei", "Tarkovsky", (byte) 45);
+        userService.saveUser("Hideo", "Kojima", (byte) 59);
+        userService.saveUser("Vasya", "Pupkin", (byte) 0);
+
 //        List<User> userList = userService.getAllUsers();
-//        userList.forEach(System.out::println);
-//
+//        System.out.println(userList);
+
+        Util.closeSessionFactory();
+
 //        userService.cleanUsersTable();
 //        userService.dropUsersTable();
 
-        UserService userService = new UserServiceImpl();
-        userService.createUsersTable();
     }
 }

@@ -27,8 +27,8 @@ public class UserDaoJDBCImpl implements UserDao {
             System.err.println("User's age cannot be negative number!");
             return;
         }
-
-        executeUpdateViaSQL(SQLQueries.saveUser(name, lastName, age));
+        String saveUserSQL = SQLQueries.saveUser(name, lastName, age);
+        executeUpdateViaSQL(saveUserSQL);
         System.out.println("User с именем " + name + " добавлен в базу данных.");
     }
 

@@ -3,9 +3,11 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -24,9 +26,15 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
+        Session session = SESSION_FACTORY.openSession();
+
         String saveUserSQL = SQLQueries.saveUser(name, lastName, age);
 
-        executeUpdateViaSQL(saveUserSQL);
+        Query saveUserQuery = session.createSQLQuery(saveUserSQL);
+        saveUserQuery.executeUpdate();
+        System.out.println("User с именем " + name + " добавлен в базу данных.");
+
+        session.close();
     }
 
     @Override

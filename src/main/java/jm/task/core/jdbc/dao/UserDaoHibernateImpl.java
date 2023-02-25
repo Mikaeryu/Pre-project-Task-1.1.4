@@ -2,6 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -22,8 +23,17 @@ public class UserDaoHibernateImpl implements UserDao {
                         + "PRIMARY KEY (id)"
                         + ")";
 
-        Session session = Util.getSession();
-        session.createSQLQuery(createTableSQL).executeUpdate();
+
+        Session session = null;
+        try {
+            session = Util.getSession();
+            session.createSQLQuery(createTableSQL).executeUpdate();
+        } catch (HibernateException he) {
+            throw he;
+        } finally {
+            if (session != null) session.close();
+        }
+
     }
 
     @Override

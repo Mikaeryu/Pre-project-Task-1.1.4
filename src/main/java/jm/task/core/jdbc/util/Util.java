@@ -23,11 +23,7 @@ public class Util {
         return DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
     }
 
-    public static Session getSession() throws HibernateException {
-        return getSessionFactory().openSession();
-    }
-
-    private static SessionFactory getSessionFactory() throws HibernateException {
+    public static SessionFactory getSessionFactory() throws HibernateException {
         SessionFactory sessionFactory;
         ServiceRegistry serviceRegistry;
 

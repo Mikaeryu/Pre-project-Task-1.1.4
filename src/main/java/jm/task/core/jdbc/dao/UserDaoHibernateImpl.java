@@ -14,26 +14,26 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        executeUpdateForSQL(SQLQueries.createUsersTable());
+        executeUpdateViaSQL(SQLQueries.createUsersTable());
     }
 
     @Override
     public void dropUsersTable() {
-        executeUpdateForSQL(SQLQueries.dropUsersTable());
+        executeUpdateViaSQL(SQLQueries.dropUsersTable());
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
         String saveUserSQL = SQLQueries.saveUser(name, lastName, age);
 
-        executeUpdateForSQL(saveUserSQL);
+        executeUpdateViaSQL(saveUserSQL);
     }
 
     @Override
     public void removeUserById(long id) {
         String removeUserByIdSQL = SQLQueries.removeUserById(id);
 
-        executeUpdateForSQL(removeUserByIdSQL);
+        executeUpdateViaSQL(removeUserByIdSQL);
     }
 
     @Override
@@ -43,10 +43,10 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        executeUpdateForSQL(SQLQueries.cleanUsersTable());
+        executeUpdateViaSQL(SQLQueries.cleanUsersTable());
     }
 
-    private void executeUpdateForSQL(String sqlQuery) {
+    private void executeUpdateViaSQL(String sqlQuery) {
         Session session = SESSION_FACTORY.openSession();
         session.createSQLQuery(sqlQuery).executeUpdate();
         session.close();

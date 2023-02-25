@@ -13,12 +13,12 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
-        executeUpdateForSQL(SQLQueries.createUsersTable());
+        executeUpdateViaSQL(SQLQueries.createUsersTable());
     }
 
     @Override
     public void dropUsersTable() {
-        executeUpdateForSQL(SQLQueries.dropUsersTable());
+        executeUpdateViaSQL(SQLQueries.dropUsersTable());
     }
 
     @Override
@@ -28,13 +28,13 @@ public class UserDaoJDBCImpl implements UserDao {
             return;
         }
 
-        executeUpdateForSQL(SQLQueries.saveUser(name, lastName, age));
+        executeUpdateViaSQL(SQLQueries.saveUser(name, lastName, age));
         System.out.println("User с именем " + name + " добавлен в базу данных.");
     }
 
     @Override
     public void removeUserById(long id) {
-        executeUpdateForSQL(SQLQueries.removeUserById(id));
+        executeUpdateViaSQL(SQLQueries.removeUserById(id));
     }
 
     @Override
@@ -65,14 +65,14 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        executeUpdateForSQL(SQLQueries.cleanUsersTable());
+        executeUpdateViaSQL(SQLQueries.cleanUsersTable());
     }
 
     /**
      * Метод, устанавливающий соединение с БД и выполняющий SQL комманду.
      * @param sqlStatement SQL команда.
      */
-    private void executeUpdateForSQL(String sqlStatement) {
+    private void executeUpdateViaSQL(String sqlStatement) {
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()
         ) {

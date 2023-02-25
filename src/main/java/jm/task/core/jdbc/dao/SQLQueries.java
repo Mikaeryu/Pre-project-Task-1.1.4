@@ -38,7 +38,7 @@ public class SQLQueries {
         return SELECT_USER_QUERY;
     }
 
-    public static String cleanTable() {
+    public static String cleanUsersTable() {
         return CLEAN_TABLE;
     }
 }

@@ -1,10 +1,11 @@
 package jm.task.core.jdbc.dao;
 
-
 /**
  * Класс, возращающий Строки в виде SQL-запросов
  */
 public class SQLQueries {
+    private SQLQueries() {} //приватный конструктор не позволяет создавать инстансы
+
     private static final String TABLE_NAME = "users_db";
 
     private static final String CREATE_USERS_TABLE =

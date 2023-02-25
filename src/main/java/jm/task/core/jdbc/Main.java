@@ -29,6 +29,6 @@ public class Main {
 //        userService.dropUsersTable();
 
         UserService userService = new UserServiceImpl();
-        userService.cleanUsersTable();
+        userService.createUsersTable();
     }
 }

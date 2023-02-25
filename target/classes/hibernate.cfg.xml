@@ -15,7 +15,7 @@
         <!-- Connection properties -->
 
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/usersdb
+            jdbc:mysql://localhost/users_db
         </property>
 
         <property name="hibernate.connection.username">
@@ -27,7 +27,6 @@
         </property>
 
         <!-- List of XML mapping files -->
-        <!-- Should change mapping to User here -->
         <mapping resource="User.hbm.xml"/>
 
     </session-factory>

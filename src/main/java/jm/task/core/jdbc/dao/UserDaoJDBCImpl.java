@@ -11,57 +11,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-
-    private static final String TABLE_NAME = "users_db";
-
     @Override
     public void createUsersTable() {
-        String createTableSQL =
-                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
-                + "("
-                + "id BIGINT NOT NULL AUTO_INCREMENT,"
-                + "name VARCHAR(100) NOT NULL,"
-                + "lastName VARCHAR(100) NOT NULL, "
-                + "age TINYINT NOT NULL,"
-                + "PRIMARY KEY (id)"
-                + ")";
-
-        executeUpdateForSQL(createTableSQL);
+        executeUpdateForSQL(SQLQueries.createUsersTable());
     }
 
     @Override
     public void dropUsersTable() {
-        String dropTableSQL = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-        executeUpdateForSQL(dropTableSQL);
+        executeUpdateForSQL(SQLQueries.dropUsersTable());
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
         if (age < 0) {
-            System.out.println("User's age cannot be negative number!");
+            System.err.println("User's age cannot be negative number!");
             return;
         }
 
-        String saveSQL = String.format(
-                "INSERT INTO " + TABLE_NAME + " (name, lastName, age) values ('%s', '%s', %s) ",
-                name, lastName, age
-        );
-
-        executeUpdateForSQL(saveSQL);
+        executeUpdateForSQL(SQLQueries.saveUser(name, lastName, age));
         System.out.println("User с именем " + name + " добавлен в базу данных.");
     }
 
     @Override
     public void removeUserById(long id) {
-        String deleteUserByIdSQL = "DELETE FROM " + TABLE_NAME + " WHERE id=" + id;
-
-        executeUpdateForSQL(deleteUserByIdSQL);
+        executeUpdateForSQL(SQLQueries.removeUserById(id));
     }
 
     @Override
     public List<User> getAllUsers() {
-        final String query = "SELECT id, name, lastName, age FROM " + TABLE_NAME;
+        final String query = SQLQueries.selectUserQuery();
         List<User> userList = new ArrayList<>();
 
         try (Connection connection = Util.getConnection();
@@ -87,9 +65,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String cleanTableSQL = "TRUNCATE TABLE " + TABLE_NAME;
-
-        executeUpdateForSQL(cleanTableSQL);
+        executeUpdateForSQL(SQLQueries.cleanUsersTable());
     }
 
     /**

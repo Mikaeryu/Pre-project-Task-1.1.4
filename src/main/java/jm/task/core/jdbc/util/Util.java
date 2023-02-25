@@ -32,7 +32,7 @@ public class Util {
         ServiceRegistry serviceRegistry;
 
         Configuration configuration = new Configuration();
-        configuration.configure("src/main/java/hibernate.cfg.xml");
+        configuration.configure("src/main/java/jm/task/core/jdbc/util/hibernate.cfg.xml");
 
         serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())

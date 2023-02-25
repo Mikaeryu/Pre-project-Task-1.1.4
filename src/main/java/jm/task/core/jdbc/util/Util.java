@@ -14,6 +14,8 @@ public class Util {
     // реализуйте настройку соеденения с БД
     private Util() {}
 
+    private static SessionFactory sessionFactory;
+
     public static Connection getConnection() throws SQLException{
         final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
         final String USER_NAME = "root";
@@ -23,7 +25,6 @@ public class Util {
     }
 
     public static SessionFactory getSessionFactory() throws HibernateException {
-        SessionFactory sessionFactory;
         ServiceRegistry serviceRegistry;
 
         Configuration configuration = new Configuration();
@@ -37,4 +38,9 @@ public class Util {
 
         return sessionFactory;
     }
+
+    public static void closeSessionFactory() {
+        sessionFactory.close();
+    }
+
 }

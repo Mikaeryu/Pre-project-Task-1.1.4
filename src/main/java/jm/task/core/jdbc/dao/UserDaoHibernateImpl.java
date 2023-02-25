@@ -29,7 +29,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Session session = sessionFactory.openSession();
         session.createSQLQuery(createTableSQL).executeUpdate();
         session.close();
-        sessionFactory.close();
+        Util.closeSessionFactory();
 
     }
 

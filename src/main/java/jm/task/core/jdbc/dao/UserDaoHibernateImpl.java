@@ -10,42 +10,28 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    private static final String TABLE_NAME = "users_db";
-
     @Override
     public void createUsersTable() {
-        String createTableSQL =
-                "CREATE TABLE IF NOT EXISTS " + TABLE_NAME
-                        + "("
-                        + "id BIGINT NOT NULL AUTO_INCREMENT,"
-                        + "name VARCHAR(100) NOT NULL,"
-                        + "lastName VARCHAR(100) NOT NULL, "
-                        + "age TINYINT NOT NULL,"
-                        + "PRIMARY KEY (id)"
-                        + ")";
-
-
-        SessionFactory sessionFactory = Util.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.createSQLQuery(createTableSQL).executeUpdate();
-        session.close();
-        Util.closeSessionFactory();
-
+        executeUpdateForSQL(SQLQueries.createUsersTable());
     }
 
     @Override
     public void dropUsersTable() {
-
+        executeUpdateForSQL(SQLQueries.dropUsersTable());
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
+        String saveUserSQL = SQLQueries.saveUser(name, lastName, age);
 
+        executeUpdateForSQL(saveUserSQL);
     }
 
     @Override
     public void removeUserById(long id) {
+        String removeUserByIdSQL = SQLQueries.removeUserById(id);
 
+        executeUpdateForSQL(removeUserByIdSQL);
     }
 
     @Override
@@ -55,6 +41,13 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
+        executeUpdateForSQL(SQLQueries.cleanUsersTable());
+    }
 
+    private void executeUpdateForSQL(String sqlQuery) {
+        SessionFactory sessionFactory = Util.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.createSQLQuery(sqlQuery).executeUpdate();
+        session.close();
     }
 }

@@ -6,7 +6,7 @@ package jm.task.core.jdbc.dao;
 public class SQLQueries {
     private SQLQueries() {} //приватный конструктор не позволяет создавать инстансы
 
-    private static final String TABLE_NAME = "users_db";
+    private static final String TABLE_NAME = "users";
 
     private static final String CREATE_USERS_TABLE =
             "CREATE TABLE IF NOT EXISTS " + TABLE_NAME

@@ -1,5 +1,9 @@
 package jm.task.core.jdbc.dao;
 
+
+/**
+ * Класс, возращающий Строки в виде SQL-запросов
+ */
 public class SQLQueries {
     private static final String TABLE_NAME = "users_db";
 

@@ -51,5 +51,4 @@ public class UserDaoHibernateImpl implements UserDao {
         session.createSQLQuery(sqlQuery).executeUpdate();
         session.close();
     }
-
 }

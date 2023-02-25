@@ -26,8 +26,5 @@
             Ch3ck4dGR4Y!
         </property>
 
-        <!-- List of XML mapping files -->
-        <mapping resource="User.hbm.xml"/>
-
     </session-factory>
 </hibernate-configuration>

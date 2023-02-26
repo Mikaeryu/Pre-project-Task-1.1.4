@@ -3,7 +3,7 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.*;
-
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +23,12 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        Session session = SESSION_FACTORY.openSession();
-
         String saveUserSQL = SQLQueries.saveUser(name, lastName, age);
-
-        Query saveUserQuery = session.createSQLQuery(saveUserSQL);
-        saveUserQuery.executeUpdate();
+        executeUpdateViaSQL(saveUserSQL);
         System.out.println("User с именем " + name + " добавлен в базу данных.");
 
-        session.close();
+        //        User user = new User(name, lastName, age);
+        //        session.save(user);
     }
 
     @Override
@@ -43,7 +40,28 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        Session session = SESSION_FACTORY.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query tableResults = session.createSQLQuery(SQLQueries.selectUserQuery());
+
+        List<Object[]> results = tableResults.list();
+        final List<User> userList= new ArrayList<>();
+        results.forEach(result -> {
+            long id = ((BigInteger) result[0]).longValue();
+            String name = (String) result[1];
+            String lastName = (String) result[2];
+            byte age = (byte) result[3];
+
+            User user = new User(name, lastName, age);
+            user.setId(id);
+            userList.add(user);
+        });
+
+        transaction.commit();
+        session.close();
+
+        return userList;
     }
 
     @Override

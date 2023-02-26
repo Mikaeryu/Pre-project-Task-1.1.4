@@ -2,10 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
     private void executeUpdateViaSQL(String sqlQuery) {
         Session session = SESSION_FACTORY.openSession();
+        Transaction transaction = session.beginTransaction();
         session.createSQLQuery(sqlQuery).executeUpdate();
+        transaction.commit();
         session.close();
     }
 }

@@ -21,8 +21,8 @@ public class Main {
         userService.saveUser("Hideo", "Kojima", (byte) 59);
         userService.saveUser("Vasya", "Pupkin", (byte) 0);
 
-//        List<User> userList = userService.getAllUsers();
-//        System.out.println(userList);
+        List<User> userList = userService.getAllUsers();
+        System.out.println(userList);
 
         Util.closeSessionFactory();
 

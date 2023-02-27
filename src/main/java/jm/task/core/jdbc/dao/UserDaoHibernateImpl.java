@@ -22,15 +22,20 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         Session session = SESSION_FACTORY.openSession();
+        Transaction transaction = session.beginTransaction();
+
         User user = new User(name, lastName, age);
         session.save(user);
+
+        transaction.commit();
         session.close();
+
+        System.out.println("User с именем " + name + " добавлен в базу данных.");
     }
 
     @Override
     public void removeUserById(long id) {
         String removeUserByIdSQL = SQLQueries.removeUserById(id);
-
         executeUpdateViaSQL(removeUserByIdSQL);
     }
 

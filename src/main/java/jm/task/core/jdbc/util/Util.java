@@ -48,7 +48,7 @@ public class Util {
         Properties p = new Properties();
 
         p.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        p.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+        p.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
         p.setProperty("hibernate.connection.url", DB_URL);
         p.setProperty("hibernate.connection.username", USER_NAME);
         p.setProperty("hibernate.connection.password", PASSWORD);

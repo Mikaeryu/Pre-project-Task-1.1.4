@@ -22,7 +22,7 @@ public class Main {
         userService.saveUser("Vasya", "Pupkin", (byte) 0);
 
         List<User> userList = userService.getAllUsers();
-        System.out.println(userList);
+        userList.forEach(System.out::println);
 
         Util.closeSessionFactory();
 

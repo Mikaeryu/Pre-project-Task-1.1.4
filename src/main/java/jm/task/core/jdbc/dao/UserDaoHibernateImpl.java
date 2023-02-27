@@ -43,6 +43,7 @@ public class UserDaoHibernateImpl implements UserDao {
         executeUpdateViaSQL(removeUserByIdSQL);
     }
 
+    @SuppressWarnings("unchecked assignment: 'java.util.List' to 'java.util.List<jm.task.core.jdbc.model.User>")
     @Override
     public List<User> getAllUsers() {
         Session session = SESSION_FACTORY.openSession();

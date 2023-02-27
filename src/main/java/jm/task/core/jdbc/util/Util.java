@@ -9,29 +9,29 @@ import org.hibernate.service.ServiceRegistry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Util {
     // реализуйте настройку соеденения с БД
     private Util() {
     }
 
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "Ch3ck4dGR4Y!";
+
     private static SessionFactory sessionFactory;
 
     public static Connection getConnection() throws SQLException {
-        final String DB_URL = "jdbc:mysql://localhost:3306/users_db?useSSL=false";
-        final String USER_NAME = "root";
-        final String PASSWORD = "Ch3ck4dGR4Y!";
-
         return DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
     }
 
     public static SessionFactory getSessionFactory() throws HibernateException {
-        ServiceRegistry serviceRegistry;
-
         Configuration configuration = new Configuration();
-        configuration.configure();
+        configuration.setProperties(getPropertiesForConfiguration())
+                .addResource("User.hbm.xml");
 
-        serviceRegistry = new StandardServiceRegistryBuilder()
+        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
                 .build();
 
@@ -44,4 +44,15 @@ public class Util {
         sessionFactory.close();
     }
 
+    private static Properties getPropertiesForConfiguration() {
+        Properties p = new Properties();
+
+        p.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        p.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+        p.setProperty("hibernate.connection.url", DB_URL);
+        p.setProperty("hibernate.connection.username", USER_NAME);
+        p.setProperty("hibernate.connection.password", PASSWORD);
+
+        return p;
+    }
 }
